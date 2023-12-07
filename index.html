@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+  </head>
+  <body class="w-screen h-screen">
+    <main class="p-8 flex flex-col w-full h-full justify-center items-center">
+      <div
+        id="modal-wrapper"
+        class="absolute w-full h-full flex justify-center items-center bg-slate-100"
+        x-data="{open: false}"
+        x-show="open"
+        x-on:keyup.escape.window="open = false"
+        x-on:open-modal.window="open = true"
+      >
+        <div
+          id="modal"
+          class="w-[400px] h-[400px] bg-white rounded-lg"
+          x-on:click="open = true"
+        >
+          <div
+            class="text-2xl font-mono relative top-2 left-3 cursor-pointer w-max"
+            x-on:click="open = false"
+            x-show="open"
+          >
+            X
+          </div>
+          <div class="p-8 space-y-4">
+            <h1 class="text-xl font-bold">Modal Headline</h1>
+            <p>Modal Content. Lorem Ipsum Lorem Ipsim Lorem Ipsum.</p>
+          </div>
+        </div>
+      </div>
+      <h1 class="text-3xl text-blue-500">AlpineJS Modal</h1>
+      <button
+        x-data
+        x-on:click="$dispatch('open-modal')"
+        class="border border-black px-2 py-3 rounded-lg mt-6"
+      >
+        Open Modal
+      </button>
+    </main>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
